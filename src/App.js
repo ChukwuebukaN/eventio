@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from 'react';
+import './styles/onboarding.css';
+import './styles/dashboard.css';
+import Routes from './routes';
+import { useHistory } from 'react-router-dom';
+// import { useSelector } from "react-redux";
+// import { accessUser } from './redux/auth/authSlice';
+import { NonAuthRoutes } from './constants';
+import authHandler from './authHandler';
 
 function App() {
+  const authenticated = authHandler.get();
+  const history = useHistory();
+
+  useEffect(() => {
+    const ac = new AbortController();
+
+    if (authenticated === '') return;
+    history.push(NonAuthRoutes.signin);
+
+    return function cleanup() {
+        ac.abort();
+    }
+  }, [history, authenticated])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Routes />
     </div>
-  );
+  )
 }
 
 export default App;

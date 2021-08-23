@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  background-color: #F2F2F2;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -10,4 +11,89 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+/* Hind Font  */
+
+@font-face {
+  font-family: 'HindBold';
+  font-weight: 700;
+  src: local('HindBold'),
+      url(./fonts/Hind/Hind-Bold.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'HindLight';
+  font-weight: 300;
+  src: local('HindLight'),
+      url(./fonts/Hind/Hind-Light.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'HindMedium';
+  font-weight: 500;
+  src: local('HindMedium'),
+      url(./fonts/Hind/Hind-Medium.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'HindRegular';
+  font-weight: 400;
+  src: local('HindRegular'),
+      url(./fonts/Hind/Hind-Regular.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'HindSemiBold';
+  font-weight: 600;
+  src: local('HindSemiBold'),
+      url(./fonts/Hind/Hind-SemiBold.ttf) format('truetype');
+}
+
+
+/* Playfair Display Font */
+
+@font-face {
+  font-family: 'PlayfairDisplayBlack';
+  font-weight: 900;
+  src: local('PlayfairDisplayBlack'),
+      url(./fonts/PlayfairDisplay/PlayfairDisplay-Black.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'PlayfairDisplayBlackItalic';
+  font-weight: 900;
+  font-style: italic;
+  src: local('PlayfairDisplayBlackItalic'),
+      url(./fonts/PlayfairDisplay/PlayfairDisplay-BlackItalic.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'PlayfairDisplayBold';
+  font-weight: 700;
+  src: local('PlayfairDisplayBold'),
+      url(./fonts/PlayfairDisplay/PlayfairDisplay-Bold.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'PlayfairDisplayBoldItalic';
+  font-weight: 700;
+  font-style: italic;
+  src: local('PlayfairDisplayBoldItalic'),
+      url(./fonts/PlayfairDisplay/PlayfairDisplay-BoldItalic.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'PlayfairDisplayItalic';
+  font-weight: 400;
+  font-style: italic;
+  src: local('PlayfairDisplayItalic'),
+      url(./fonts/PlayfairDisplay/PlayfairDisplay-Italic.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'PlayfairDisplayRegular';
+  font-weight: 400;
+  src: local('PlayfairDisplayRegular'),
+      url(./fonts/PlayfairDisplay/PlayfairDisplay-Regular.ttf) format('truetype');
 }
