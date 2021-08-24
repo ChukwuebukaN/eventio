@@ -1,57 +1,53 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
-import dashboard from '../../api/dashboard';
 import { isMobile } from '../../redux/user/userSlice';
 import { FaUser } from 'react-icons/fa';
 import moment from 'moment';
 
-const EventsGridCard = () => {
-  const [events, setEvents] = useState([]);
+const EventsGridCard = ({events}) => {
   const mobile = useSelector(isMobile)
 
-  useEffect(() => {
-    const ac = new AbortController();
-  
-    dashboard
-      .listOfEvents()
-      .then((response) => {
-        console.log('here', response)
-        setEvents(response.data)
-      })
-    
-    // cleanup component
-    return function cleanup() {
-      ac.abort();
+  /** Convert ISO 8601 dateString to Date */
+  const getDateString = (date) => {
+    let datey = moment(date)
+    let year = datey.year()
+    let day = datey.format('DD')
+    let time = datey.format('hh:mm A')
+    let month = datey.format('MMMM')
+    return month+" "+day+", "+year+" - "+time
+  }
+
+  /** Shorten Long Descriptions on List Display */
+  const shortenLongStrings = (string) => {
+    if (string.length > 25) {
+      let longString = string.substring(0, 24) + "...";
+      return longString;
+    } else {
+      return string;
     }
-  }, []);
+  };
 
-  /** Get User Events to Display */
+  /** Shorten Long Title on List Display */
+  const shortenTitleStrings = (string) => {
+    if (string.length > 25) {
+      let longString = string.substring(0, 20) + "...";
+      return longString;
+    } else {
+      return string;
+    }
+  };
+
+  /** Get User Events to Display in List */
   const displayFetchedEvents = () => {
-
-    // {fetchedEvents.startsAt}
-    // let date = new Date('2013-03-10T02:00:00Z');
-    // let dateDisplay = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
-    // let Mydate = events.map((fetchedDate) => (fetchedDate.startsAt));
-    // let result = Mydate.match(/\d\d:\d\d/);
-
-    // let date = events.map((fetchedDate) => (fetchedDate.startsAt));
-    // let convertedDateFrom = moment(date.from).toISOString();
-    // console.log('date2', convertedDateFrom)
-    // let long = events[0].map((longWords) => (longWords.description));
-    // let displayShort = long.map((dispShort) => (dispShort))
-
-    // let short = displayShort.replace(/(.{7})..+/, "$1&hellip;");
-    // console.log(long)
-
     return events.map((fetchedEvents) => (
-      <div className={mobile ? 'events-list-item' : 'events-list-item-deskt'}>
-        <div className={mobile ? 'event-list-title' : 'event-list-title-deskt'} > {fetchedEvents.title} </div>
-        <div className={mobile ? 'event-list-description-mobile' : 'event-description-desktop'}> {fetchedEvents.description} </div>
+      <div className={mobile ? 'events-list-item' : 'events-list-item-deskt'} key={fetchedEvents._id}>
+        <div className={mobile ? 'event-list-title' : 'event-list-title-deskt'} > {shortenTitleStrings(fetchedEvents.title)} </div>
+        <div className={mobile ? 'event-list-description-mobile' : 'event-description-deskt'}> {shortenLongStrings(fetchedEvents.description)} </div>
         <div className={mobile ? 'hidden' : 'event-list-owner-deskt'}> {fetchedEvents.owner.firstName} {fetchedEvents.owner.lastName} </div>
-        <div className={mobile ? 'event-list-date' : 'event-list-date-deskt'}> {fetchedEvents.startsAt} </div>
+        <div className={mobile ? 'event-list-date' : 'event-list-date-deskt'}> {getDateString(fetchedEvents.startsAt)} </div>
         <div className={mobile ? 'event-list-capacity' : 'event-list-capacity-deskt'}> <FaUser className='hidden' /> {fetchedEvents.attendees.length} of {fetchedEvents.capacity} </div>
         <div className={mobile ? 'event-list-join-button' : 'event-list-join-button-deskt'}>JOIN</div>
-      </div>
+        </div>
     ));
   };
   

@@ -2,10 +2,9 @@ import React, { useEffect } from 'react';
 import './styles/onboarding.css';
 import './styles/dashboard.css';
 import './styles/createEvent.css';
+import './styles/editEvent.css';
 import Routes from './routes';
 import { useHistory } from 'react-router-dom';
-// import { useSelector } from "react-redux";
-// import { accessUser } from './redux/auth/authSlice';
 import { NonAuthRoutes } from './constants';
 import authHandler from './authHandler';
 
@@ -16,7 +15,7 @@ function App() {
   useEffect(() => {
     const ac = new AbortController();
 
-    if (authenticated === '') return;
+    if (authenticated !== null) return;
     history.push(NonAuthRoutes.signin);
 
     return function cleanup() {

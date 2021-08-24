@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-// import { MdRemoveRedEye } from 'react-icons/md';
 import { FiLoader } from 'react-icons/fi';
+import { MdClose } from 'react-icons/md';
 import { useHistory } from 'react-router-dom';
 import authHandler from '../authHandler';
-// import LogoBlack from '../images/LogoBlack.png'
+import LogoBlack from '../images/LogoBlack.png'
 import { AuthRoutes } from '../constants';
 import dashboard from '../api/dashboard';
 
@@ -16,13 +16,19 @@ function CreateEvent() {
   const [inputCapacityActive, setInputCapacityActive] = useState(false);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const [dateOfEvent, setDateOfEvent] = useState(null);
-  const [timeOfEvent, setTimeOfEvent] = useState(null);
-  const [startsAt, setStartsAt] = useState('');
-  const [capacity, setCapacity] = useState(null);
+  const [dateOfEvent, setDateOfEvent] = useState('');
+  const [timeOfEvent, setTimeOfEvent] = useState('');
+  // const [startsAt, setStartsAt] = useState('');
+  const [capacity, setCapacity] = useState('');
   const screenIsMobile = authHandler.getUserIsMobile('userMobile')
   const [btnIsLoading, setBtnIsLoading] = useState(false);
 
+
+  /** handles Create New Close */
+  const handleClose = () => {
+    history.push(AuthRoutes.dashboard)
+  };
+  
   /** handles Title form input transition */
   const handleTitleTransition = (text) => {
     setTitle(text);
@@ -74,46 +80,46 @@ function CreateEvent() {
     }
   };
 
-  const convertDateTime = () => {
-    let DateTime = dateOfEvent + dateOfEvent;
-    let converteDateTime = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ")
-    setStartsAt(converteDateTime)
-    console.log('convertedDateTime 👍', converteDateTime)
-  };
+  // const convertDateTime = () => {
+  //   let DateTime = dateOfEvent + timeOfEvent;
+  //   let converteDateTime = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ")
+  //   setStartsAt(converteDateTime)
+  //   console.log('convertedDateTime 👍', converteDateTime)
+  // };
 
   /** handles Create Event and then routes to Dashboard */
   const handleCreateNewEvent = (e) => {
     setBtnIsLoading(true)
-    convertDateTime()
-    console.log('convertedDateTime222 👍')
     e.preventDefault();
-
-    // Create User API call
-    dashboard
-    .CreateEvent(title, description, startsAt, capacity)
-    .then((response) => {
-      console.log('👍 NEW EVENT', response)
-      if (response.status === 201) {
-        console.log('👍 Event was created successfully', response)
-        history.push(AuthRoutes.dashboard)
-        console.log('👍 ROUTED')
-      }
-    })
-    .catch(error => console.log(error))
-    setTimeout(() => {
-      setBtnIsLoading(false)
-    }, 3000);
+    try {
+      // Create User API call
+      dashboard
+        .CreateEvent(title, description, capacity)
+        .then((response) => {
+          console.log('👍 NEW EVENT CREATED', response)
+          if (response.status === 201) {
+            console.log('👍 Event was created successfully', response)
+            setBtnIsLoading(false)
+            history.push(AuthRoutes.dashboard)
+            console.log('👍 ROUTED')
+          }
+        })
+        .catch(error => console.log(error))
+    } catch (error) {
+      console.log(error)
+    };
   };
 
   return (
     <div className='onboarding'>
-      <div className={ screenIsMobile === 'true' ? 'createEvent-wrapper' : 'onboarding-desktop'}>
-      {/* <img src={LogoBlack} className={screenIsMobile === 'true' ? 'logo-mobile' : 'hidden'} alt="Eventio Logo Black" /> */}
-        <header className={ screenIsMobile === 'true' ? 'createEvent-Title' : 'header-text-desktop'}>
+      <img src={LogoBlack} className='logo-mobile' alt="Eventio Logo Black" />
+      <div className='createEvent-close-btn' onClick={handleClose}> <MdClose className='createEvent-close-btn-icon' /> {screenIsMobile ?  'Close' : ' ' }</div>
+      <div className={ screenIsMobile === 'true' ? 'createEvent-wrapper' : 'createEvent-wrapper'}>
+        <header className={ screenIsMobile === 'true' ? 'createEvent-title' : 'createEvent-title'}>
           <h2>Create new event.</h2>
           <h5>Enter details below.</h5>
         </header>
-        <form id='createevent' onSubmit={handleCreateNewEvent} >
+        <form id='createevent' onSubmit={handleCreateNewEvent}>
           <div className='onboarding-form'>
             <input required type='text' className='onboarding-input' value={title} onChange={(e) => handleTitleTransition(e.target.value)}/>
             <label htmlFor='title' className={ inputTitleActive ? 'Active' : '' }>
@@ -127,7 +133,7 @@ function CreateEvent() {
             </label>  
           </div>
           <div className='onboarding-form'>
-            <input required placeholder=" " type="date" name="begin" min="2020-01-01" max="2040-12-31"
+            <input required placeholder="Date" type="date" name="begin" min="2021-08-01" max="2050-12-31"
               className='onboarding-input'
               value={dateOfEvent}
               onChange={(e) => handleDateTransition(e.target.value)} />
@@ -136,7 +142,7 @@ function CreateEvent() {
             </label>  
           </div>
           <div className='onboarding-form'>
-            <input required placeholder=" " type='time'
+            <input required placeholder="Time" type='time'
               className='onboarding-input'
               value={timeOfEvent}
               onChange={(e) => handleTimeTransition(e.target.value)} />
@@ -153,15 +159,13 @@ function CreateEvent() {
               Capacity
             </label>  
           </div>
-
         </form>
-
           <div style={{display: 'flex', marginTop: '-40px'}}>
             <button
               type='submit'
               form="createevent"
               value="Submit form"
-              className={screenIsMobile === 'true' ? 'onboarding-submit-btn-mobile' : 'onboarding-submit-btn-desktop'}
+              className={screenIsMobile === 'true' ? 'createEvent-button' : 'createEvent-button'}
               onClick={handleCreateNewEvent}>
               {btnIsLoading ? <FiLoader className='btn-loading' /> : 'CREATE NEW EVENT'}
             </button> 

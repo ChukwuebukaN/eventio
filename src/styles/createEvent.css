@@ -1,17 +1,42 @@
-.createEvent-wrapper {
-    width: 400px;
-    height: 450px;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    background-color: white;
+.createEvent-close-btn {
+  top: 29px;
+  right: 24px;
+  position: absolute;
+  cursor: pointer;
+  font-family: 'HindMedium';
+  color: #323C46;
+  display: flex;
+  align-items: center;
 }
-.createEvent-Title {
+.createEvent-close-btn-icon {
+  font-size: 34px;
+  color: #000000;
+}
+.createEvent-wrapper {
+  width: 400px;
+  height: 500px;
+  position: absolute;
+  left: 50%;
+  top: 55%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+}
+.createEvent-title {
   font-family: HindLight;
   text-align: center;
+  padding-bottom: 5px;
 }
-.createEvent-Button {
+.createEvent-title h2 {
+  color: #323C46;
+  font-size: 22px;
+}
+.createEvent-title h5 {
+  color: #949EA8;
+  font-size: 14px;
+  margin-top: -10px;
+  margin-bottom: 50px;
+}
+.createEvent-button {
   height: 57px;
   width: 240px;
   border: none;
@@ -21,6 +46,6 @@
   cursor: pointer;
   font-size: 16px;
   font-family: 'HindSemiBold';
-  margin: -40px auto;
+  margin: 30px auto;
   transition: height 100ms, width 100ms, font-size 100ms;
 }

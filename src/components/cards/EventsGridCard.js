@@ -7,29 +7,7 @@ import moment from 'moment';
 const EventsGridCard = ({events}) => {
   const mobile = useSelector(isMobile)
 
-  // useEffect(() => {
-  //   const ac = new AbortController();
-  
-  //   dashboard
-  //     .listOfEvents()
-  //     .then((response) => {
-  //       console.log('here', response)
-  //       // let date1 = response.data[0].startsAt
-  //       // let date2 = response.data.map((dateStarted) => (dateStarted.startsAt))
-        
-  //       // console.log('date1', date1)
-  //       // console.log('date2', date2)
-  //       setEvents(response.data)
-  //       // setDatey1(date1)
-  //       // setDate2(date2)
-  //     })
-    
-  //   // cleanup component
-  //   return function cleanup() {
-  //     ac.abort();
-  //   }
-  // }, []);
-
+  /** Convert ISO 8601 dateString to Date */
   const getDateString = (date) => {
     let datey = moment(date)
     let year = datey.year()
@@ -39,9 +17,8 @@ const EventsGridCard = ({events}) => {
     return month+" "+day+", "+year+" - "+time
   }
 
-
-  /** Get User Events to Display */
-  const displayFetchedEvents = () => {
+  /** Get User Events to Display in Grid */
+  const displayFetchedEventsGrid = () => {
     return events.map((fetchedEvents) => (
       <div className='events-gird-item' key={fetchedEvents._id}>
         <div className='event-date'> {getDateString(fetchedEvents.startsAt)} </div>
@@ -60,7 +37,7 @@ const EventsGridCard = ({events}) => {
     <div>
       <div className='events-grid-display'>
         <div className='events-gird-item-wrapper'>
-          {displayFetchedEvents()}
+          {displayFetchedEventsGrid()}
         </div>
       </div>
     </div>

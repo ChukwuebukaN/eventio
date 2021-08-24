@@ -2,9 +2,12 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { AuthRoutes, NonAuthRoutes } from '../../constants';
 import authHandler from '../../authHandler';
+import { useDispatch } from 'react-redux';
+import { signinUser } from '../../redux/auth/authSlice';
 
 const DropdownModal = () => {
   const history = useHistory();
+  const dispatch = useDispatch();
   
   /** handles routing to Profile page */
   const handleProfileRoute = () => {
@@ -13,11 +16,10 @@ const DropdownModal = () => {
 
   /** handles Log out */
   const handleLogout = () => {
-    //clear token
     authHandler.delete();
-    console.log('deleted')
+    console.log('👍 Expired TOKEN cleared')
     history.push(NonAuthRoutes.signin);
-    console.log('routed')
+    console.log('👍 Logged Out Successfully')
   };
 
   return (

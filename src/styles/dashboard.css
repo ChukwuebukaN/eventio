@@ -107,10 +107,45 @@
 .create-event-btn:hover {
   background-color: #565D5A;
 }
-.events-view-wrapper {
+.create-event-btn-icon {
+  margin-top: 10px;
+  margin-right: 0.5px;
+  font-size: 26px;
+}
+  .events-view-wrapper {
   display: flex;
   background-color: #F2F2F2;
 }
+
+.events-sorter-mobile {
+  left: 50px;
+  top: 103px;
+  position: absolute;
+  display: flex;
+  align-items: center;
+}
+.events-sorter-mobile-show {
+  color: #D9DCE1;
+  font-family: 'HindMedium';
+}
+select {
+  margin-left: 5px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  text-indent: 5px;
+  border: 0;
+  background: none;
+  font-family: 'HindSemiBold';
+  width: 125px;
+}
+.events-sorter-mobile-icon {
+  margin-left: -25px;
+  margin-bottom: 3px;
+  font-size: 30px;
+  color: #323C46;
+  cursor: pointer;
+}
+
 .events-sorter {
   left: 50px;
   top: 103px;
@@ -172,7 +207,8 @@
   /* overflow-x: hidden;
   overflow-y: auto; */
   /* overflow: auto; */
-  max-height: 100vh;
+  /* max-height: 100vh; */
+  margin-bottom: 100px;
 }
 .events-gird-item {
   height: 296px;
@@ -180,6 +216,7 @@
   box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.108696);
   border-radius: 2px;
   position: relative;
+  cursor: pointer;
 }
 
 .event-date {
@@ -250,6 +287,7 @@
   bottom: 0;
   right: 0;
   margin-bottom: 15px;
+  cursor: pointer;
 }
 
 
@@ -259,7 +297,8 @@
   /* grid-gap: 1rem; */
   margin: 150px 50px auto;
   /* overflow: auto; */
-  max-height: 100vh;
+  /* max-height: 100vh; */
+  margin-bottom: 100px;
 }
 .events-list-item {
   height: 136px;
@@ -267,6 +306,7 @@
   box-shadow: 0px 2px 3px rgb(0 0 0 / 11%);
   border-radius: 2px;
   position: relative;
+  cursor: pointer;
 }
 .event-list-title {
   margin-top: 16px;
@@ -322,79 +362,86 @@
   position: absolute;
   bottom: 0;
   right: 0;
-  margin-bottom: 15px;
+  margin-bottom: 8px;
 }
 
 
 
 .events-list-item-deskt {
-  height: 70px;
+  height: 72px;
   background-color: white;
   box-shadow: 0px 2px 3px rgb(0 0 0 / 11%);
   border-radius: 2px;
   /* position: relative; */
-  display: flex;
-  margin-top: 16px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 6fr));
+  grid-gap: 1rem;
+  margin: 20px auto;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
 }
-.event-list-title-deskt {
-  margin-top: 10px;
-  padding-top: 13px;
+.event-list-title-deskt {    
+  /* margin-top: 22px; */
+  /* padding-top: 13px; */
   margin-left: 32px;
   color: #323C46;
   font-size: 18px;
   font-family: HindMedium;
-  width: 291px;
+  width: 183px;
 }
-/* .event-list-description-mobile {
-  margin-top: 3px;
-  margin-left: 32px;
-  margin-right: 50px;
+.event-description-deskt {
+  margin-left: 77px;
+  /* margin-right: 100px; */
   color: #949EA8;
   font-size: 16px;
   font-family: HindLight;
-} */
-.event-list-owner-deskt {
-  margin-top: 26px;
-  margin-left: 40px;
+  width: 200px;
+}
+.event-list-owner-deskt {    
+  /* margin-top: 26px; */
+  margin-left: 110px;
   color: #7D7878;
   font-size: 14px;
   font-family: HindMedium;
-  width: 100px;
+  width: 110px;
 }
-.event-list-date-deskt {
-  margin-left: 35px;
-  margin-top: 26px;
+.event-list-date-deskt {    
+  margin-left: 60px;
+  /* margin-top: 26px; */
+  /* margin-right: 2px; */
   color: #CACDD0;
   font-size: 14px;
   font-family: HindMedium;
-  width: 225px;
+  width: 205px;
 }
-.event-list-capacity-deskt {
-  margin-top: 30px;
-  /* margin-left: 70px; */
+.event-list-capacity-deskt {    
+  /* margin-top: 30px; */
+  margin-left: 110px;
   color: #949EA8;
   font-size: 14px;
   font-family: HindMedium;
   /* position: absolute; */
   /* bottom: 0; */
-  /* margin-bottom: 10px;*/
-}
-.event-list-join-button-deskt {
+  /* margin-bottom: 10px; */
   width: 100px;
-  height: 32px;
+}
+.event-list-join-button-deskt {    
+  width: 100px;
+  /* height: 32px; */
   background-color: #22D486;
   border-radius: 4px;
-  margin-top: 25px;
+  /* margin-top: 25px; */
   text-align: center;
   line-height: 2.5;
-  margin-right: 32px;
+  margin-left: 30px;
   font-size: 14px;
   color: #FFFFFF;
   font-family: HindMedium;
   /* position: absolute; */
   /* bottom: 0; */
   /* right: 0; */
-  /* margin-bottom: 15px;*/
+  /* margin-bottom: 15px; */
 }
 
 

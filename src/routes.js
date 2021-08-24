@@ -4,6 +4,7 @@ import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import Dashboard from './pages/Dashboard';
 import CreateEvent from './pages/CreateEvent';
+import EditEvent from './pages/EditEvent';
 import Details from './pages/Details';
 import Profile from './pages/Profile';
 import Error404 from './pages/Error404';
@@ -21,8 +22,8 @@ function Routes() {
     if (screenIsMobile === 'true' && (location.pathname === NonAuthRoutes.signin || location.pathname === NonAuthRoutes.signup)) {
       return <Fragment>
         <Switch>
-          <Route path={NonAuthRoutes.signin} component={SignIn} />
-          <Route path={NonAuthRoutes.signup} component={SignUp} />
+          <Route exact path={NonAuthRoutes.signin} component={SignIn} />
+          <Route exact path={NonAuthRoutes.signup} component={SignUp} />
         </Switch>
       </Fragment>;
     } else if (location.pathname === NonAuthRoutes.signin || location.pathname === NonAuthRoutes.signup) {
@@ -30,19 +31,20 @@ function Routes() {
         <div className='app-wrapper-sidebar'>
           <SideBar className=''/>
           <Switch>
-            <Route path={NonAuthRoutes.signin} component={SignIn} />
-            <Route path={NonAuthRoutes.signup} component={SignUp} />
+            <Route exact path={NonAuthRoutes.signin} component={SignIn} />
+            <Route exact path={NonAuthRoutes.signup} component={SignUp} />
           </Switch>
         </div>
       </Fragment>;
     } else {
       return <Fragment>
         <Switch>
-          <Route path={AuthRoutes.dashboard} render={props => <Dashboard {...props} />} />
-          <Route path={AuthRoutes.createEvent} component={CreateEvent} />
-          <Route path={`${AuthRoutes.details}/event/:entityId`} component={Details} />
-          <Route path={AuthRoutes.profile} render={props => <Profile {...props} />} />
-          <Route path={AuthRoutes.error404} component={Error404} />
+          <Route exact path={AuthRoutes.dashboard} component={Dashboard} />
+          <Route exact path={AuthRoutes.editEvent} component={EditEvent} />
+          <Route exact path={AuthRoutes.createEvent} component={CreateEvent} />
+          <Route exact path={`${AuthRoutes.details}/event/:id`} component={Details} />
+          <Route exact path={AuthRoutes.profile} component={Profile}/>
+          <Route exact path={AuthRoutes.error404} component={Error404} />
         </Switch>
       </Fragment>;
     }

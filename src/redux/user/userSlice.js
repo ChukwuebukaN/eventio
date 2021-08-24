@@ -1,16 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    isMobile: false,
+    isMobile: false
 }
 
 const userSlice = createSlice({
     name: 'user',
     initialState,
     reducers: {
-        setIsMobile(state, action) {
-            state.isMobile = action.payload
-        }
+      setIsMobile(state, action) {
+          state.isMobile = action.payload
+      }
     }
 });
 

@@ -75,7 +75,7 @@ function SignUp() {
     }
   };
 
-    /** handles Password visibility */
+  /** handles Password visibility */
   const handleShowPassword = () => {
     setShowPassword(showPassword ? false : true);
   };
@@ -101,7 +101,8 @@ function SignUp() {
       // make Create User API call
       onboarding
       .SignUp(firstName, lastName, email, password)
-      .then((response) => {
+        .then((response) => {
+        console.log('👍 Backend Sever is Available!', response)
         if (response.status === 201) {
           history.push(NonAuthRoutes.signin)
           console.log('👍 sign up was successful', response)
@@ -162,17 +163,17 @@ function SignUp() {
           </div> 
         </form>
           <div onClick={handleSignInRoute} className={screenIsMobile === 'true' ? 'onboarding-signup-text-mobile' : 'hidden'}>
-            <h5 className='onboarding-signup-text1'>Don’t have an account?</h5>
-            <h5 className='onboarding-signup-text2' >SIGN UP</h5>
+            <h5 className='onboarding-signup-text1'>Already have an account?</h5>
+            <h5 className='onboarding-signup-text2' >SIGN IN</h5>
           </div>
           <div style={{display: 'flex'}}>
           <button
             type='submit'
             form="signin"
-            value="Submit"
+            value="Submit form"
             className={screenIsMobile === 'true' ? 'onboarding-submit-btn-mobile' : 'onboarding-submit-btn-desktop'}
             onClick={handleSignUp}>
-            {btnIsLoading ? <FiLoader className='btn-loading' /> : 'SIGN IN'}
+            {btnIsLoading ? <FiLoader className='btn-loading' /> : 'SIGN UP'}
           </button>
           </div>      
       </div>

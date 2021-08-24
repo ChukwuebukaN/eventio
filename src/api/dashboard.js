@@ -1,4 +1,6 @@
+import axios from 'axios';
 import {eventioApi} from '../config';
+import authHandler from '../authHandler';
 
 // eslint-disable-next-line
 export default {
@@ -7,15 +9,22 @@ export default {
     return await eventioApi.get('/events');
   },
     /** Send a POST request to Create New Event */
-  CreateEvent: async function (title, description, startsAt, capacity) {
+  CreateEvent: async function (title, description, capacity) {
+  let accessToken = authHandler.get()
     let data = {
       'title': title,
       'description': description,
-      'startsAt': startsAt,
+      'startsAt': '2021-12-18T09:57:19.956Z',
       'capacity': capacity
     }
     const fd = JSON.stringify(data);
-    console.log('👍 DATA SENT')
-    return await eventioApi.post('events', fd);
+
+    return await axios.post('https://testproject-api-v2.strv.com/events', fd, {
+      headers: {
+        'Content-Type': 'application/json',
+        'APIKey': '8bbe1daa454b5960bd6fadc10b9ac1220771110d',
+        'Authorization': accessToken
+      }
+    });
   }
 };

@@ -3,7 +3,7 @@ import { MdRemoveRedEye } from 'react-icons/md';
 import { FiLoader } from 'react-icons/fi';
 import { useHistory } from 'react-router-dom';
 import onboarding from '../api/onboarding';
-import { authenticatedUser, signinUser } from '../redux/auth/authSlice';
+import { signedInUser, signinUser } from '../redux/auth/authSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import authHandler from '../authHandler';
 import LogoBlack from '../images/LogoBlack.png'
@@ -11,10 +11,8 @@ import { AuthRoutes, NonAuthRoutes } from '../constants';
 
 function SignIn() {
   const history = useHistory();
-  const authenticated = authHandler.get();
-
   const dispatch = useDispatch();
-  // const authenticated = useSelector(authenticatedUser);
+  const userIsSignedIn = useSelector(signedInUser);
   const [showPassword, setShowPassword] = useState(false);
   const [inputEmailActive, setInputEmailActive] = useState(false);
   const [inputPasswordActive, setInputPasswordActive] = useState(false);
@@ -23,6 +21,18 @@ function SignIn() {
   const [signInErrMsg, setSignInErrMsg] = useState(false);
   const [btnIsLoading, setBtnIsLoading] = useState(false);
   const screenIsMobile = authHandler.getUserIsMobile('userMobile')
+
+  /** UseEffect to handle Signed In user in redirected to Dashboard  */
+  useEffect(() => {
+    const ac = new AbortController();
+
+    if (userIsSignedIn !== 'true') return;
+    history.push(AuthRoutes.dashboard);
+
+    return function cleanup() {
+        ac.abort();
+    }
+  }, [history, userIsSignedIn]);
 
   /** handles routing of sign in page to sign up page */
   const handleSignUpRoute = () => {
@@ -59,64 +69,44 @@ function SignIn() {
     }
   };
 
-  /** handles Tokenization: Stores the token to Redux and localStorage */
-  const handleToken = async (refreshToken) => {
+  /** handles Tokenization, User Sign In and Stores the token to Redux and localStorage*/
+  const handleSignIn = (e) => {
+    e.preventDefault();
+    setBtnIsLoading(true)
     try {
       onboarding
-        .GetToken(refreshToken)
+        .SignIn(email, password)
         .then((response) => {
-          let accessUser = response.headers['authorization']
+          console.log('👍 Backend Sever is Available!', response)
+          let accessToken = response.headers['authorization']
           dispatch(signinUser({
-            token: accessUser,
+            token: accessToken,
             isSignedIn: 'true',
           }));
-          authHandler.handle(accessUser)
-          localStorage.setItem('isAuthenticated', true)
+          authHandler.handle(accessToken)
+          localStorage.setItem('isSignedIn', true)
+          let id = response.data.id;
+          let firstName = response.data.firstName;
+          let lastName = response.data.lastName;
+          let email = response.data.email;
+          let name = [firstName, lastName].join(' ')
+          authHandler.setUserInfo(id, firstName, lastName, email, name);
+          console.log('👍 user info Saved!')
+          // let eventio_auth = response.headers['refresh-token']
+          // handleToken(eventio_auth)
+          if (response.status === 201) {
+            setBtnIsLoading(false)
+          } 
+          history.push(AuthRoutes.dashboard)
+          console.log('👍 sign in was successful')
         })
-        history.push(AuthRoutes.dashboard)
-        console.log('👍 sign in was successful')
-    } catch (error) {
+        .catch(error => setSignInErrMsg(true))
+    }
+    catch (error) {
       console.log(error)
     }
   };
 
-  /** handles user Sign In and Routes to Dashboard page */
-  const handleSignIn = (e) => {
-    e.preventDefault();
-    setBtnIsLoading(true)
-    onboarding
-      .SignIn(email, password)
-      .then((response) => {
-        console.log(response);
-        let id = response.data.id;
-        let firstName = response.data.firstName;
-        let lastName = response.data.lastName;
-        let email = response.data.email;
-        let name = [firstName, lastName].join(' ')
-        authHandler.setUserInfo(id, firstName, lastName, email, name);
-
-        let eventio_auth = response.headers['refresh-token']
-        handleToken(eventio_auth)
-      })
-      .catch(error => setSignInErrMsg(true))
-      setTimeout(() => {
-        setBtnIsLoading(false)
-      }, 3000);
-  };
-
-  /** UseEffect to handle Signed In user in redirected to Dashboard  */
-  useEffect(() => {
-    const ac = new AbortController();
-
-    if(authenticated !== null) return;
-    history.push(AuthRoutes.dashboard);
-
-    // cleanup component
-    return function cleanup() {
-        ac.abort();
-    }
-  }, [history, authenticated]);
-  
   return (
     <div className='onboarding'>
       <div className={screenIsMobile === 'true' ? 'onboarding-mobile' : 'onboarding-desktop'}>
@@ -150,7 +140,7 @@ function SignIn() {
           <button
             type='submit'
             form='signin'
-            value='Submit'
+            value='Submit form'
             className={screenIsMobile === 'true' ? 'onboarding-submit-btn-mobile' : 'onboarding-submit-btn-desktop'}
             onClick={handleSignIn} >
             {btnIsLoading ? <FiLoader className='btn-loading' /> : 'SIGN IN'}

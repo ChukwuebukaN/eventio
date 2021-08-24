@@ -22,8 +22,8 @@ const authSlice = createSlice({
     }
 });
 
-export const authenticatedUser = state => state.auth.isSignedIn;
-export const accessUser = state => state.auth.token;
+export const signedInUser = state => state.auth.isSignedIn;
+export const accessToken = state => state.auth.token;
 export const { signinUser, signupUser } = authSlice.actions;
 
 export default authSlice.reducer;

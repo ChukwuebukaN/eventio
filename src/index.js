@@ -13,7 +13,7 @@ import { setIsMobile } from './redux/user/userSlice';
 
 let store = configureStore;
 let TOKEN = authHandler.get()
-let isAuthenticated = localStorage.getItem('isAuthenticated')
+let isSignedIn = localStorage.getItem('isSignedIn')
 
 /** React Redux setup, handles user Authorization and Signed In Users*/
 const Root = () => {
@@ -53,7 +53,7 @@ const Render = () => {
 if (TOKEN) {
   store.dispatch(signinUser({
       token: TOKEN,
-      isSignedIn: isAuthenticated
+      isSignedIn: isSignedIn
   }));
   Render();
 } else {
