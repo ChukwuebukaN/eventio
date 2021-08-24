@@ -1,8 +1,6 @@
 .createEvent-wrapper {
-    /* width: 85%; */
     width: 400px;
     height: 450px;
-    /* padding-top: 20%; */
     position: absolute;
     left: 50%;
     top: 50%;
@@ -12,7 +10,6 @@
 .createEvent-Title {
   font-family: HindLight;
   text-align: center;
-  line-height: 1;
 }
 .createEvent-Button {
   height: 57px;

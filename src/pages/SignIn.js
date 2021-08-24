@@ -11,8 +11,10 @@ import { AuthRoutes, NonAuthRoutes } from '../constants';
 
 function SignIn() {
   const history = useHistory();
+  const authenticated = authHandler.get();
+
   const dispatch = useDispatch();
-  const authenticated = useSelector(authenticatedUser);
+  // const authenticated = useSelector(authenticatedUser);
   const [showPassword, setShowPassword] = useState(false);
   const [inputEmailActive, setInputEmailActive] = useState(false);
   const [inputPasswordActive, setInputPasswordActive] = useState(false);
@@ -25,6 +27,11 @@ function SignIn() {
   /** handles routing of sign in page to sign up page */
   const handleSignUpRoute = () => {
     history.push(NonAuthRoutes.signup)
+  };
+
+  /** handles routing to Home page */
+  const handleHomeRoute = () => {
+    history.push(NonAuthRoutes.signin)
   };
 
   /** handles password visibility */
@@ -101,7 +108,7 @@ function SignIn() {
   useEffect(() => {
     const ac = new AbortController();
 
-    if(authenticated === 'false') return;
+    if(authenticated !== null) return;
     history.push(AuthRoutes.dashboard);
 
     // cleanup component
@@ -113,7 +120,7 @@ function SignIn() {
   return (
     <div className='onboarding'>
       <div className={screenIsMobile === 'true' ? 'onboarding-mobile' : 'onboarding-desktop'}>
-      <img src={LogoBlack} className={screenIsMobile === 'true' ? 'logo-mobile' : 'hidden'} alt="Eventio Logo Black" />
+      <img src={LogoBlack} onClick={handleHomeRoute} className={screenIsMobile === 'true' ? 'logo-mobile' : 'hidden'} alt="Eventio Logo Black" />
         <header className={ screenIsMobile === 'true' ? 'header-text-mobile' : 'header-text-desktop'}>
           <h2>Sign in to Eventio.</h2>
           { signInErrMsg ? <h5 style={{color: 'red'}}>Oops! That email and pasword combination is not valid.</h5> : <h5>Enter your details below.</h5> }

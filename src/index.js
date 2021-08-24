@@ -22,7 +22,7 @@ const Root = () => {
   useEffect(() => {
     const ac = new AbortController();
 
-    if(width < 1025) {
+    if (width < 1025) {
       store.dispatch(setIsMobile(true));
       localStorage.setItem('userMobile', true);
     } else {

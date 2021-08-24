@@ -9,7 +9,7 @@ function Profile() {
   const history = useHistory();
   const [modalOpen, setModalOpen] = useState(false);
 
-  /** handles routing to Profile page */
+  /** handles routing to Home page */
   const handleHomeRoute = () => {
     history.push(AuthRoutes.dashboard)
   };

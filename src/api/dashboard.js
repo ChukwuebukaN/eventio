@@ -15,6 +15,7 @@ export default {
       'capacity': capacity
     }
     const fd = JSON.stringify(data);
+    console.log('👍 DATA SENT')
     return await eventioApi.post('events', fd);
   }
 };

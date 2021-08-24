@@ -21,8 +21,8 @@ function Routes() {
     if (screenIsMobile === 'true' && (location.pathname === NonAuthRoutes.signin || location.pathname === NonAuthRoutes.signup)) {
       return <Fragment>
         <Switch>
-          <Route exact path={NonAuthRoutes.signin} component={SignIn} />
-          <Route exact path={NonAuthRoutes.signup} component={SignUp} />
+          <Route path={NonAuthRoutes.signin} component={SignIn} />
+          <Route path={NonAuthRoutes.signup} component={SignUp} />
         </Switch>
       </Fragment>;
     } else if (location.pathname === NonAuthRoutes.signin || location.pathname === NonAuthRoutes.signup) {
@@ -30,19 +30,19 @@ function Routes() {
         <div className='app-wrapper-sidebar'>
           <SideBar className=''/>
           <Switch>
-            <Route exact path={NonAuthRoutes.signin} component={SignIn} />
-            <Route exact path={NonAuthRoutes.signup} component={SignUp} />
+            <Route path={NonAuthRoutes.signin} component={SignIn} />
+            <Route path={NonAuthRoutes.signup} component={SignUp} />
           </Switch>
         </div>
       </Fragment>;
     } else {
       return <Fragment>
         <Switch>
-          <Route path={AuthRoutes.dashboard} component={Dashboard} />
+          <Route path={AuthRoutes.dashboard} render={props => <Dashboard {...props} />} />
           <Route path={AuthRoutes.createEvent} component={CreateEvent} />
-          <Route exact path={`${AuthRoutes.details}/edit/:entityId`} component={Details} />
-          <Route exact path={AuthRoutes.profile} component={Profile} />
-          <Route exact path={AuthRoutes.error404} component={Error404} />
+          <Route path={`${AuthRoutes.details}/event/:entityId`} component={Details} />
+          <Route path={AuthRoutes.profile} render={props => <Profile {...props} />} />
+          <Route path={AuthRoutes.error404} component={Error404} />
         </Switch>
       </Fragment>;
     }

@@ -30,6 +30,11 @@ function SignUp() {
     history.push(NonAuthRoutes.signin)
   };
 
+  /** handles routing to Home page */
+  const handleHomeRoute = () => {
+    history.push(NonAuthRoutes.signin)
+  };
+
   /** handles FirstName form input transition */
   const handleFirstnameTransition = (text) => {
     setFirstname(text);
@@ -106,14 +111,14 @@ function SignUp() {
       setSignInErrMsg(true);
       setTimeout(() => {
         setBtnIsLoading(false)
-      }, 1000);
+      }, 3000);
     }
   };
 
   return (
     <div className='onboarding'>
       <div className={ screenIsMobile === 'true' ? 'onboarding-mobile' : 'onboarding-desktop'}>
-      <img src={LogoBlack} className={screenIsMobile === 'true' ? 'logo-mobile' : 'hidden'} alt="Eventio Logo Black" />
+      <img src={LogoBlack} onClick={handleHomeRoute} className={screenIsMobile === 'true' ? 'logo-mobile' : 'hidden'} alt="Eventio Logo Black" />
         <header className={ screenIsMobile === 'true' ? 'header-text-mobile' : 'header-text-desktop'}>
           <h2>Get started absolutely free.</h2>
           { signInErrMsg || passwordErrMsg ? <h5 style={{color: 'red'}}>Oops! Your Details or Password combination is not valid.</h5> : <h5>Enter your details below.</h5> }

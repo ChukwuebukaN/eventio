@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react';
 import LogoBlack from '../images/LogoBlack.png';
 import { MdArrowDropDown, MdViewModule, MdViewStream } from 'react-icons/md';
 import { useHistory } from 'react-router-dom';
-import { AuthRoutes } from '../constants';
+import { AuthRoutes, NonAuthRoutes } from '../constants';
 import DropdownModal from '../components/modals/DropdownModal';
 import authHandler from '../authHandler';
 import EventsGridCard from '../components/cards/EventsGridCard';
@@ -25,7 +25,7 @@ function Dashboard() {
 
   /** handles routing to Profile page */
   const handleHomeRoute = () => {
-    history.push(AuthRoutes.dashboard)
+    history.push(NonAuthRoutes.signin)
   };
 
   /** handles routing to Create Event page */
@@ -87,9 +87,29 @@ function Dashboard() {
     setSortedEvents(past)
     // console.log('PAST EVENTS', past)
   };
-  
+
+  /** Displays Sorted Events in Grid and List */
+  const displaySortedEvents = () => {
+    if (isEventsGrid === true) {
+      return <EventsGridCard events={sortedEvents}/>
+    } else if (isEventsList === true) {
+      return <EventsListCard />
+    }
+  };
+
   useEffect(() => {
+    const ac = new AbortController();
+
     document.title = "Eventio • Dashboaord"
+
+    dashboard
+    .listOfEvents()
+    .then((response) => {
+      console.log('here', response)
+      setEvents(response.data)
+      setSortedEvents(response.data)
+    })
+
     /** Capitalize User Initals */
     const userInitials = () => {
       const user = authHandler.getUser();
@@ -101,29 +121,6 @@ function Dashboard() {
       setInitials(separateWord.join(''));
     };
     userInitials()
-  }, []);
-
-  const displaySortedEvents = () => {
-    if (isEventsGrid === true) {
-      return <EventsGridCard events={sortedEvents}/>
-    } else if (isEventsList === true) {
-      return <EventsListCard />
-    }
-  };
-
-
-
-
-  useEffect(() => {
-    const ac = new AbortController();
-  
-    dashboard
-      .listOfEvents()
-      .then((response) => {
-        console.log('here', response)
-        setEvents(response.data)
-        setSortedEvents(response.data)
-      })
     
     // cleanup component
     return function cleanup() {
@@ -174,7 +171,7 @@ function Dashboard() {
       </div>
       {displaySortedEvents()}
       {modalAccountModal()}
-      <div className='create-event-btn' onClick={handleCreateEvent()}>+</div>
+      <div className='create-event-btn' onClick={handleCreateEvent}> + </div>
     </Fragment>
   )
 };
