@@ -1,6 +1,7 @@
 const AuthRoutes = {
   dashboard: '/Dashboard',
-  // details: '/Dashboard/Details',
+  createEvent: '/CreateEvent',
+  details: '/Events/Details',
   profile: '/Profile',
   error404: '/Error404'
 }

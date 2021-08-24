@@ -1,0 +1,29 @@
+.createEvent-wrapper {
+    /* width: 85%; */
+    width: 400px;
+    height: 450px;
+    /* padding-top: 20%; */
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+}
+.createEvent-Title {
+  font-family: HindLight;
+  text-align: center;
+  line-height: 1;
+}
+.createEvent-Button {
+  height: 57px;
+  width: 240px;
+  border: none;
+  background: #22D486;
+  color: #ffffff;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  font-family: 'HindSemiBold';
+  margin: -40px auto;
+  transition: height 100ms, width 100ms, font-size 100ms;
+}

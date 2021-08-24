@@ -7,6 +7,8 @@ import DropdownModal from '../components/modals/DropdownModal';
 import authHandler from '../authHandler';
 import EventsGridCard from '../components/cards/EventsGridCard';
 import EventsListCard from '../components/cards/EventsListCard';
+import dashboard from '../api/dashboard';
+import moment from 'moment';
 
 function Dashboard() {
   const history = useHistory();
@@ -18,10 +20,17 @@ function Dashboard() {
   const [sortFutureEvents, setSortFutureEvents] = useState(false);
   const [sortPastEvents, setSortPastEvents] = useState(false);
   const [initials, setInitials] = useState('');
+  const [events, setEvents] = useState([]);
+  const [sortedEvents, setSortedEvents] = useState([]);
 
   /** handles routing to Profile page */
   const handleHomeRoute = () => {
     history.push(AuthRoutes.dashboard)
+  };
+
+  /** handles routing to Create Event page */
+  const handleCreateEvent = () => {
+    history.push(AuthRoutes.createEvent)
   };
 
   /** handles opening of Dropdown Modal */
@@ -60,6 +69,11 @@ function Dashboard() {
     setSortAllEvents(false)
     setSortFutureEvents(true)
     setSortPastEvents(false)
+
+    // Filter Future Events 
+    const future = events.filter((event) => moment().isBefore(event.startsAt))
+    setSortedEvents(future)
+    // console.log('FUTURE EVENTS', future)
   };
 
   /** Handles Events sorting on Past Events Selected */
@@ -67,6 +81,11 @@ function Dashboard() {
     setSortAllEvents(false)
     setSortFutureEvents(false)
     setSortPastEvents(true)
+
+    // Filter Past Events 
+    const past = events.filter((event) => moment(event.startsAt).isBefore())
+    setSortedEvents(past)
+    // console.log('PAST EVENTS', past)
   };
   
   useEffect(() => {
@@ -85,13 +104,32 @@ function Dashboard() {
   }, []);
 
   const displaySortedEvents = () => {
-
     if (isEventsGrid === true) {
-      return <EventsGridCard />
+      return <EventsGridCard events={sortedEvents}/>
     } else if (isEventsList === true) {
       return <EventsListCard />
     }
   };
+
+
+
+
+  useEffect(() => {
+    const ac = new AbortController();
+  
+    dashboard
+      .listOfEvents()
+      .then((response) => {
+        console.log('here', response)
+        setEvents(response.data)
+        setSortedEvents(response.data)
+      })
+    
+    // cleanup component
+    return function cleanup() {
+      ac.abort();
+    }
+  }, []);
 
   return (
     <Fragment>
@@ -136,7 +174,7 @@ function Dashboard() {
       </div>
       {displaySortedEvents()}
       {modalAccountModal()}
-      <div className='create-event-btn'>+</div>
+      <div className='create-event-btn' onClick={handleCreateEvent()}>+</div>
     </Fragment>
   )
 };

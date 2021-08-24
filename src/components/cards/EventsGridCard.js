@@ -1,68 +1,50 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
-import dashboard from '../../api/dashboard';
 import { isMobile } from '../../redux/user/userSlice';
 import { FaUser } from 'react-icons/fa';
-// import moment from 'moment';
+import moment from 'moment';
 
-const EventsCard = () => {
-  const [events, setEvents] = useState([]);
-  // const [datey1, setDatey1] = useState([]);
-  // const [date2, setDate2] = useState([]);
+const EventsGridCard = ({events}) => {
   const mobile = useSelector(isMobile)
 
-  useEffect(() => {
-    const ac = new AbortController();
+  // useEffect(() => {
+  //   const ac = new AbortController();
   
-    dashboard
-      .listOfEvents()
-      .then((response) => {
-        // console.log('here', response)
-        // let date1 = response.data[0].startsAt
-        // let date2 = response.data.map((dateStarted) => (dateStarted.startsAt))
+  //   dashboard
+  //     .listOfEvents()
+  //     .then((response) => {
+  //       console.log('here', response)
+  //       // let date1 = response.data[0].startsAt
+  //       // let date2 = response.data.map((dateStarted) => (dateStarted.startsAt))
         
-        // console.log('date1', date1)
-        // console.log('date2', date2)
-        setEvents(response.data)
-        // setDatey1(date1)
-        // setDate2(date2)
-      })
+  //       // console.log('date1', date1)
+  //       // console.log('date2', date2)
+  //       setEvents(response.data)
+  //       // setDatey1(date1)
+  //       // setDate2(date2)
+  //     })
     
-    // cleanup component
-    return function cleanup() {
-      ac.abort();
-    }
-  }, []);
-  // {fetchedEvents.startsAt}
-  // let date = new Date('2013-03-10T02:00:00Z');
-  // let dateDisplay = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
-  // let Mydate = events.map((fetchedDate) => (fetchedDate.startsAt));
-  // let result = Mydate.match(/\d\d:\d\d/);
+  //   // cleanup component
+  //   return function cleanup() {
+  //     ac.abort();
+  //   }
+  // }, []);
 
-  // let date = events.map((fetchedDate) => (fetchedDate.startsAt));
-  // let convertedDateFrom = moment(date.from).toISOString();
-  // console.log('date2', convertedDateFrom)
-
-  // let date = events.map((fetchedDate) => (fetchedDate.startsAt));
-  // let convertedDateFrom =  Date.parse(date1)
-
-  // const getGetString = () => {
-  //   let cherish = new moment(datey1)
-    
-  //   let year = cherish.Year()
-    
-  //   let month = cherish.Month()
-    
-  //   return year+" "+month 
-  // }
-
+  const getDateString = (date) => {
+    let datey = moment(date)
+    let year = datey.year()
+    let day = datey.format('DD')
+    let time = datey.format('hh:mm A')
+    let month = datey.format('MMMM')
+    return month+" "+day+", "+year+" - "+time
+  }
 
 
   /** Get User Events to Display */
   const displayFetchedEvents = () => {
     return events.map((fetchedEvents) => (
-      <div className='events-gird-item'>
-        <div className='event-date'> {fetchedEvents.startsAt} </div>
+      <div className='events-gird-item' key={fetchedEvents._id}>
+        <div className='event-date'> {getDateString(fetchedEvents.startsAt)} </div>
         <div className='event-title'> {fetchedEvents.title} </div>
         <div className='event-owner'> {fetchedEvents.owner.firstName} {fetchedEvents.owner.lastName} </div>
         <div className={mobile ? 'event-description-mobile' : 'event-description-desktop'}> {fetchedEvents.description} </div>
@@ -85,4 +67,4 @@ const EventsCard = () => {
   )
 };
 
-export default EventsCard;
+export default EventsGridCard;

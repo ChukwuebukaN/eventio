@@ -3,7 +3,8 @@ import { Route, Switch } from 'react-router-dom';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import Dashboard from './pages/Dashboard';
-// import Details from './pages/Details';
+import CreateEvent from './pages/CreateEvent';
+import Details from './pages/Details';
 import Profile from './pages/Profile';
 import Error404 from './pages/Error404';
 import { AuthRoutes, NonAuthRoutes } from './constants';
@@ -38,7 +39,8 @@ function Routes() {
       return <Fragment>
         <Switch>
           <Route path={AuthRoutes.dashboard} component={Dashboard} />
-          {/* <Route exact path={`${AuthRoutes.details}/edit/:entityId`} component={Details} /> */}
+          <Route path={AuthRoutes.createEvent} component={CreateEvent} />
+          <Route exact path={`${AuthRoutes.details}/edit/:entityId`} component={Details} />
           <Route exact path={AuthRoutes.profile} component={Profile} />
           <Route exact path={AuthRoutes.error404} component={Error404} />
         </Switch>

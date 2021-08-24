@@ -15,7 +15,9 @@ const DropdownModal = () => {
   const handleLogout = () => {
     //clear token
     authHandler.delete();
+    console.log('deleted')
     history.push(NonAuthRoutes.signin);
+    console.log('routed')
   };
 
   return (

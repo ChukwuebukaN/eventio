@@ -30,7 +30,6 @@ export default {
       'password': password
     }
     const fd = JSON.stringify(data);
-
     return await eventioApi.post('users', fd);
   }
 };

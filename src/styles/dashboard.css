@@ -326,3 +326,75 @@
 }
 
 
+
+.events-list-item-deskt {
+  height: 70px;
+  background-color: white;
+  box-shadow: 0px 2px 3px rgb(0 0 0 / 11%);
+  border-radius: 2px;
+  /* position: relative; */
+  display: flex;
+  margin-top: 16px;
+}
+.event-list-title-deskt {
+  margin-top: 10px;
+  padding-top: 13px;
+  margin-left: 32px;
+  color: #323C46;
+  font-size: 18px;
+  font-family: HindMedium;
+  width: 291px;
+}
+/* .event-list-description-mobile {
+  margin-top: 3px;
+  margin-left: 32px;
+  margin-right: 50px;
+  color: #949EA8;
+  font-size: 16px;
+  font-family: HindLight;
+} */
+.event-list-owner-deskt {
+  margin-top: 26px;
+  margin-left: 40px;
+  color: #7D7878;
+  font-size: 14px;
+  font-family: HindMedium;
+  width: 100px;
+}
+.event-list-date-deskt {
+  margin-left: 35px;
+  margin-top: 26px;
+  color: #CACDD0;
+  font-size: 14px;
+  font-family: HindMedium;
+  width: 225px;
+}
+.event-list-capacity-deskt {
+  margin-top: 30px;
+  /* margin-left: 70px; */
+  color: #949EA8;
+  font-size: 14px;
+  font-family: HindMedium;
+  /* position: absolute; */
+  /* bottom: 0; */
+  /* margin-bottom: 10px;*/
+}
+.event-list-join-button-deskt {
+  width: 100px;
+  height: 32px;
+  background-color: #22D486;
+  border-radius: 4px;
+  margin-top: 25px;
+  text-align: center;
+  line-height: 2.5;
+  margin-right: 32px;
+  font-size: 14px;
+  color: #FFFFFF;
+  font-family: HindMedium;
+  /* position: absolute; */
+  /* bottom: 0; */
+  /* right: 0; */
+  /* margin-bottom: 15px;*/
+}
+
+

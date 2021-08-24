@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import './styles/onboarding.css';
 import './styles/dashboard.css';
+import './styles/createEvent.css';
 import Routes from './routes';
 import { useHistory } from 'react-router-dom';
 // import { useSelector } from "react-redux";
@@ -12,16 +13,16 @@ function App() {
   const authenticated = authHandler.get();
   const history = useHistory();
 
-  useEffect(() => {
-    const ac = new AbortController();
+  // useEffect(() => {
+  //   const ac = new AbortController();
 
-    if (authenticated === '') return;
-    history.push(NonAuthRoutes.signin);
+  //   if (authenticated === '') return;
+  //   history.push(NonAuthRoutes.signin);
 
-    return function cleanup() {
-        ac.abort();
-    }
-  }, [history, authenticated])
+  //   return function cleanup() {
+  //       ac.abort();
+  //   }
+  // }, [history, authenticated])
 
   return (
     <div>
