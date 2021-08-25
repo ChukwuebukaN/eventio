@@ -27,7 +27,6 @@ function Dashboard() {
   const [events, setEvents] = useState([]);
   const [sortedEvents, setSortedEvents] = useState([]);
 
-
   useEffect(() => {
     const ac = new AbortController();
     document.title = "Eventio • Dashboaord"
@@ -52,7 +51,6 @@ function Dashboard() {
       userInitials()
     } catch (error) {
       console.log(error)
-      // handleLogout()
     }
     return function cleanup() {
       ac.abort();
@@ -62,6 +60,15 @@ function Dashboard() {
   /** handles routing to Profile page */
   const handleHomeRoute = () => {
     history.push(NonAuthRoutes.signin)
+  };
+
+  const selectedDropDown = (e) => {
+    if (e.target.value === '1') {
+      sortByFutureEvents()
+    }
+    if (e.target.value === '2') {
+      sortByPastEvents()
+    }
   };
 
   // /** handles Log out */
@@ -141,8 +148,6 @@ function Dashboard() {
     }
   };
 
-
-
   return (
     <Fragment>
       <div className='dashboard'>
@@ -161,7 +166,7 @@ function Dashboard() {
           {mobile ?
             <div className='events-sorter-mobile'>
               <div className='events-sorter-mobile-show'>SHOW:</div>
-              <select onChange={sortByFutureEvents}>
+              <select onChange={selectedDropDown}>
                 <option value="0">ALL EVENTS</option>
                 <option value="1">FUTURE EVENTS</option>
                 <option value="2">PAST EVENTS</option>

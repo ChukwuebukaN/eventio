@@ -23,7 +23,6 @@ function CreateEvent() {
   const screenIsMobile = authHandler.getUserIsMobile('userMobile')
   const [btnIsLoading, setBtnIsLoading] = useState(false);
 
-
   /** handles Create New Close */
   const handleClose = () => {
     history.push(AuthRoutes.dashboard)
@@ -80,13 +79,6 @@ function CreateEvent() {
     }
   };
 
-  // const convertDateTime = () => {
-  //   let DateTime = dateOfEvent + timeOfEvent;
-  //   let converteDateTime = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ")
-  //   setStartsAt(converteDateTime)
-  //   console.log('convertedDateTime 👍', converteDateTime)
-  // };
-
   /** handles Create Event and then routes to Dashboard */
   const handleCreateNewEvent = (e) => {
     setBtnIsLoading(true)
@@ -109,11 +101,27 @@ function CreateEvent() {
       console.log(error)
     };
   };
+  
+  /** Display Close Button */
+  const showCloseBtn = () => {
+    if (screenIsMobile === 'true') {
+      return <div className='createEvent-close-btn-mobile' onClick={handleClose}> <MdClose /></div>
+    } else {
+      return <div className='createEvent-close-btn' onClick={handleClose}> <MdClose className='createEvent-close-btn-icon' /> Close </div>
+    }
+  };
+
+  // const convertDateTime = () => {
+  //   let DateTime = dateOfEvent + timeOfEvent;
+  //   let converteDateTime = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ")
+  //   setStartsAt(converteDateTime)
+  //   console.log('convertedDateTime 👍', converteDateTime)
+  // };
 
   return (
     <div className='onboarding'>
       <img src={LogoBlack} className='logo-mobile' alt="Eventio Logo Black" />
-      <div className='createEvent-close-btn' onClick={handleClose}> <MdClose className='createEvent-close-btn-icon' /> {screenIsMobile ?  'Close' : ' ' }</div>
+      {showCloseBtn()}
       <div className={ screenIsMobile === 'true' ? 'createEvent-wrapper' : 'createEvent-wrapper'}>
         <header className={ screenIsMobile === 'true' ? 'createEvent-title' : 'createEvent-title'}>
           <h2>Create new event.</h2>

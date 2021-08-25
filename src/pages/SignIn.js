@@ -27,7 +27,7 @@ function SignIn() {
     const ac = new AbortController();
 
     if (userIsSignedIn !== 'true') return;
-    history.push(AuthRoutes.dashboard);
+    // history.push(AuthRoutes.dashboard);
 
     return function cleanup() {
         ac.abort();
@@ -92,8 +92,6 @@ function SignIn() {
           let name = [firstName, lastName].join(' ')
           authHandler.setUserInfo(id, firstName, lastName, email, name);
           console.log('👍 user info Saved!')
-          // let eventio_auth = response.headers['refresh-token']
-          // handleToken(eventio_auth)
           if (response.status === 201) {
             setBtnIsLoading(false)
           } 

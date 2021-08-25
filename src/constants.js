@@ -4,7 +4,6 @@ const AuthRoutes = {
   editEvent: '/EditEvent',
   details: '/Events/Details',
   profile: '/Profile',
-  error404: '/Error404'
 }
 
 const NonAuthRoutes = {

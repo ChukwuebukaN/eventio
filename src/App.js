@@ -3,6 +3,7 @@ import './styles/onboarding.css';
 import './styles/dashboard.css';
 import './styles/createEvent.css';
 import './styles/editEvent.css';
+import './styles/profile.css';
 import Routes from './routes';
 import { useHistory } from 'react-router-dom';
 import { NonAuthRoutes } from './constants';

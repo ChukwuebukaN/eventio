@@ -112,14 +112,14 @@
   margin-right: 0.5px;
   font-size: 26px;
 }
-  .events-view-wrapper {
+.events-view-wrapper {
   display: flex;
   background-color: #F2F2F2;
 }
 
 .events-sorter-mobile {
-  left: 50px;
-  top: 103px;
+  left: 45px;
+  top: 130px;
   position: absolute;
   display: flex;
   align-items: center;
@@ -127,6 +127,7 @@
 .events-sorter-mobile-show {
   color: #D9DCE1;
   font-family: 'HindMedium';
+  font-size: 14px;;
 }
 select {
   margin-left: 5px;
@@ -147,8 +148,8 @@ select {
 }
 
 .events-sorter {
-  left: 50px;
-  top: 103px;
+  left: 45px;
+  top: 130px;
   position: absolute;
   display: flex;
   font-size: 12px;
@@ -173,8 +174,8 @@ select {
 
 .events-switcher {
   display: flex;
-  right: 50px;
-  top: 100px;
+  right: 45px;
+  top: 130px;
   position: absolute;
   color: #D9DCE1;
   justify-content: space-between;
@@ -200,9 +201,9 @@ select {
 .events-gird-item-wrapper {
   display: grid;
   /* no-reapeat */
-  grid-template-columns: repeat(auto-fit, minmax(290px, 3fr));
+  grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
   grid-gap: 1rem;
-  margin: 150px 50px auto;
+  margin: 180px 50px auto;
 
   /* overflow-x: hidden;
   overflow-y: auto; */
@@ -271,6 +272,27 @@ select {
   margin-right: 10px;
   margin-top: 1px;
 }
+.event-edit-button {
+  width: 100px;
+  height: 32px;
+  background-color: #D9DCE1;
+  border-radius: 4px;
+  margin-top: 8px;
+  text-align: center;
+  line-height: 2.5;
+  margin-right: 15px;
+  font-size: 14px;
+  color: #A9AEB4;
+  font-family: HindMedium;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+.event-edit-button:hover {
+  background-color: #C4C9D1;
+}
 .event-join-button {
   width: 100px;
   height: 32px;
@@ -286,16 +308,102 @@ select {
   position: absolute;
   bottom: 0;
   right: 0;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   cursor: pointer;
 }
+.event-join-button:hover {
+  background-color: #20BD78;
+}
+.event-leave-button {
+  width: 100px;
+  height: 32px;
+  background-color: #FF4081;
+  border-radius: 4px;
+  margin-top: 8px;
+  text-align: center;
+  line-height: 2.5;
+  margin-right: 15px;
+  font-size: 14px;
+  color: #FFFFFF;
+  font-family: HindMedium;
+  bottom: 0;
+  right: 0;
+  margin-bottom: 9px;
+  cursor: pointer;
+}
+.event-leave-button:hover {
+  background-color: #E73370;
+}
+
+
+.event-edit-button-deskt {
+  width: 100px;
+  height: 32px;
+  background-color: #D9DCE1;
+  border-radius: 4px;
+  margin-top: 8px;
+  text-align: center;
+  line-height: 2.5;
+  margin-left: 15px;
+  font-size: 14px;
+  color: #A9AEB4;
+  font-family: HindMedium;
+  bottom: 0;
+  right: 0;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+.event-edit-button-deskt:hover {
+  background-color: #C4C9D1;
+}
+.event-join-button-deskt {
+  width: 100px;
+  height: 32px;
+  background-color: #22D486;
+  border-radius: 4px;
+  margin-top: 8px;
+  text-align: center;
+  line-height: 2.5;
+  margin-left: 15px;
+  font-size: 14px;
+  color: #FFFFFF;
+  font-family: HindMedium;
+  bottom: 0;
+  right: 0;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+.event-join-button-deskt:hover {
+  background-color: #20BD78;
+}
+.event-leave-button-deskt {
+  width: 100px;
+  height: 32px;
+  background-color: #FF4081;
+  border-radius: 4px;
+  margin-top: 8px;
+  text-align: center;
+  line-height: 2.5;
+  margin-left: 15px;
+  font-size: 14px;
+  color: #FFFFFF;
+  font-family: HindMedium;
+  bottom: 0;
+  right: 0;
+  margin-bottom: 9px;
+  cursor: pointer;
+}
+.event-leave-button-deskt:hover {
+  background-color: #E73370;
+}
+
 
 
 .events-list-item-wrapper {
   display: inherit;
   /* grid-template-columns: repeat(auto-fit, minmax(290px, 3fr)); */
   /* grid-gap: 1rem; */
-  margin: 150px 50px auto;
+  margin: 180px 50px auto;
   /* overflow: auto; */
   /* max-height: 100vh; */
   margin-bottom: 100px;
@@ -380,6 +488,7 @@ select {
   align-content: center;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 .event-list-title-deskt {    
   /* margin-top: 22px; */
@@ -442,6 +551,7 @@ select {
   /* bottom: 0; */
   /* right: 0; */
   /* margin-bottom: 15px; */
+  cursor: pointer;
 }
 
 

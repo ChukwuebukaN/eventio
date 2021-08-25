@@ -12,6 +12,17 @@
   font-size: 34px;
   color: #000000;
 }
+.createEvent-close-btn-mobile {
+  font-size: 34px;
+  top: 29px;
+  right: 24px;
+  position: absolute;
+  cursor: pointer;
+  font-family: 'HindMedium';
+  color: #323C46;
+  display: flex;
+  align-items: center;
+}
 .createEvent-wrapper {
   width: 400px;
   height: 500px;

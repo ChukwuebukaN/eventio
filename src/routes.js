@@ -7,7 +7,6 @@ import CreateEvent from './pages/CreateEvent';
 import EditEvent from './pages/EditEvent';
 import Details from './pages/Details';
 import Profile from './pages/Profile';
-import Error404 from './pages/Error404';
 import { AuthRoutes, NonAuthRoutes } from './constants';
 import { useLocation } from 'react-router-dom';
 import SideBar from './utils/Sidebar';
@@ -44,7 +43,6 @@ function Routes() {
           <Route exact path={AuthRoutes.createEvent} component={CreateEvent} />
           <Route exact path={`${AuthRoutes.details}/event/:id`} component={Details} />
           <Route exact path={AuthRoutes.profile} component={Profile}/>
-          <Route exact path={AuthRoutes.error404} component={Error404} />
         </Switch>
       </Fragment>;
     }
