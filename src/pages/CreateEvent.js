@@ -111,13 +111,6 @@ function CreateEvent() {
     }
   };
 
-  // const convertDateTime = () => {
-  //   let DateTime = dateOfEvent + timeOfEvent;
-  //   let converteDateTime = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ")
-  //   setStartsAt(converteDateTime)
-  //   console.log('convertedDateTime 👍', converteDateTime)
-  // };
-
   return (
     <div className='onboarding'>
       <img src={LogoBlack} className='logo-mobile' alt="Eventio Logo Black" />

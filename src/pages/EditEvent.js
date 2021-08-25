@@ -165,22 +165,6 @@ function EditEvent() {
     };
   };
 
-  // const convertDateTime = () => {
-  //   let DateTime = dateOfEvent + timeOfEvent;
-  //   let converteDateTime = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ")
-  //   setStartsAt(converteDateTime)
-  //   console.log('convertedDateTime 👍', converteDateTime)
-  // };
-
-  /** Get User Events IDs Display */
-  // const eventsIds = () => {
-  //   return events.map((fetchedEvents) => (
-  //     <div className='' key={fetchedEvents._id}>
-  //       <div className='event-id-text'> DETAIL EVENT: #{fetchedEvents._id} </div>
-  //     </div>
-  //   ));
-  // };
-
   /** Display Delete Button */
   const showDeletBtn = () => {
     if (screenIsMobile === 'true') {

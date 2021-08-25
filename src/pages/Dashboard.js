@@ -71,14 +71,6 @@ function Dashboard() {
     }
   };
 
-  // /** handles Log out */
-  // const handleLogout = () => {
-  //   authHandler.delete();
-  //   console.log('👍 Expired TOKEN cleared')
-  //   history.push(NonAuthRoutes.signin);
-  //   console.log('👍 Logged Out Successfully')
-  // };
-
   /** handles routing to Create Event page */
   const handleCreateEvent = () => {
     history.push(AuthRoutes.createEvent)

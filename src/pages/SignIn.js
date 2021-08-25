@@ -27,7 +27,6 @@ function SignIn() {
     const ac = new AbortController();
 
     if (userIsSignedIn !== 'true') return;
-    // history.push(AuthRoutes.dashboard);
 
     return function cleanup() {
         ac.abort();
