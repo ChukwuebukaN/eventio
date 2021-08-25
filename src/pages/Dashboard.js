@@ -1,6 +1,7 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import LogoBlack from '../images/LogoBlack.png';
 import { MdArrowDropDown, MdViewModule, MdViewStream } from 'react-icons/md';
+import { FiLoader } from 'react-icons/fi';
 import { IoMdAdd } from 'react-icons/io';
 import { useHistory } from 'react-router-dom';
 import { AuthRoutes, NonAuthRoutes } from '../constants';
@@ -137,13 +138,23 @@ function Dashboard() {
   };
 
   /** Displays Sorted Events in Grid and List */
-  const displaySortedEvents = () => {
+  const displayEvents = () => {
     if (isEventsGrid === true) {
       return <EventsGridCard events={sortedEvents}/>
     } else if (isEventsList === true) {
       return <EventsListCard events={sortedEvents} />
     }
   };
+
+  /** Displays Loading */
+  const displaySortedEvents = () => {
+    if (sortedEvents.length > 1) {
+      return displayEvents()
+    } else {
+      return <FiLoader className='btn-loading-dashboard' />
+    }
+  }
+
 
   return (
     <Fragment>

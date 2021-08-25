@@ -506,5 +506,15 @@ select {
   font-family: HindMedium;
   cursor: pointer;
 }
-
+.btn-loading-dashboard {
+  color: #A9AEB4;
+  animation-name: btn-loading;
+  animation-duration: 5000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 35px;
+}
 
