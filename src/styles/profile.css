@@ -1,59 +1,33 @@
-.my-events-text {
-  left: 45px;
-  top: 390px;
-  position: absolute;
-  display: flex;
-  align-items: center;
-  font-family: HindMedium;
-  font-size: 22px;
-}
 .dashboard-account-bigger-initials {    
   margin-right: 10px;
   background-color: #D9DCE1;
   color: #949EA8;
-  font-size: 85px;
-  width: 160px;
-  height: 160px;
+  font-size: 55px;
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
   text-align: center;
-  line-height: 167px;
+  line-height: 130px;
   font-family: HindMedium;
-  position: fixed;
-  top: 100px;
-  left: 37%;
+  position: absolute;
+  top: 112px;
+  left: 43%;
   z-index: 1;
 }
-
-
-.events-switcher-profile {
-  display: flex;
-  right: 45px;
-  top: 390px;
-  position: absolute;
-  color: #D9DCE1;
-  justify-content: space-between;
-  width: 60px;
-  font-size: 24px;
-  cursor: pointer;
-}
-
-
 .profile-background {
   position: absolute;
   height: 184px;
-  width: 90%;
-  left: 5%;
-  right: 5%;
-  /* margin: 0 30px auto; */
+  width: 80%;
+  left: 10%;
+  right: 10%;
   top: 176px;
   background: #FFFFFF;
   box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.108696);
   border-radius: 2px;
 }
-
 .profile-name {
   position: absolute;
-  left: 42%;
+  left: 43.7%;
   top: 267px;
   font-family: HindMedium;
   font-size: 18px;
@@ -64,7 +38,7 @@
 }
 .profile-email {
   position: absolute;
-  left: 37%;
+  left: 43.5%;
   top: 297px;
   font-family: HindLight;
   font-size: 18px;
@@ -72,4 +46,24 @@
   text-align: center;
   color: #949EA8;
   z-index: 2;
+}
+.my-events-text {
+  left: 10%;
+  top: 420px;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  font-family: HindMedium;
+  font-size: 22px;
+}
+.events-switcher-profile {
+  display: flex;
+  right: 10%;
+  top: 420px;
+  position: absolute;
+  color: #D9DCE1;
+  justify-content: space-between;
+  width: 60px;
+  font-size: 24px;
+  cursor: pointer;
 }

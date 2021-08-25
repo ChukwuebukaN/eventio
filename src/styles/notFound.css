@@ -1,0 +1,89 @@
+.not-found-title {
+  width: 319px;
+  height: 48px;
+  left: 699px;
+  top: 413px;
+  font-family: 'HindRegular';
+  font-size: 28px;
+  line-height: 48px;
+  color: #323C46;
+}
+.not-found-text {
+  width: 522px;
+  height: 48px;
+  left: 699px;
+  top: 467px;
+  font-family: 'HindRegular';
+  font-size: 18px;
+  line-height: 24px;
+  color: #949EA8;
+}
+.not-found-button-deskt {
+  height: 57px;
+  width: 240px;
+  border: none;
+  background: #323C46;
+  color: #ffffff;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 40px;
+  font-family: 'HindSemiBold';
+  transition: height 100ms, width 100ms, font-size 100ms;
+}
+.not-found-button-deskt:hover {
+  background: #323C46;
+}
+.not-found-wrapper-mobile {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+.not-found-title-mobile {
+  width: 319px;
+  height: 48px;
+  left: 699px;
+  top: 413px;
+  font-family: 'HindRegular';
+  font-size: 20px;
+  line-height: 48px;
+  color: #323C46;
+}
+.not-found-text-mobile {
+  width: 322px;
+  height: 48px;
+  left: 699px;
+  top: 467px;
+  font-family: 'HindRegular';
+  font-size: 14px;
+  line-height: 24px;
+  color: #949EA8;
+}
+.not-found-button-mobile {
+  height: 57px;
+  width: 240px;
+  border: none;
+  background: #323C46;
+  color: #ffffff;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 50px;
+  font-family: 'HindSemiBold';
+  transition: height 100ms, width 100ms, font-size 100ms;
+}
+.not-found-button-mobile:hover {
+  background: #323C46;
+}
+.not-found-signup-mobile {
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  float: right;
+  margin-right: 20px;
+  margin-top: 10px;
+}

@@ -4,6 +4,7 @@ import './styles/dashboard.css';
 import './styles/createEvent.css';
 import './styles/editEvent.css';
 import './styles/profile.css';
+import './styles/notFound.css';
 import Routes from './routes';
 import { useHistory } from 'react-router-dom';
 import { NonAuthRoutes } from './constants';

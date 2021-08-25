@@ -81,6 +81,11 @@ function Dashboard() {
     setModalOpen(true)
   };
 
+  /** handles closing of Dropdown Modal */
+  const closeDropdownModal = () => {
+    setModalOpen(false)
+  };
+
   /** Displays Dropdown Modal */
   const modalAccountModal = () => {
     if (modalOpen === true) {
@@ -146,15 +151,10 @@ function Dashboard() {
         <img src={LogoBlack} className='logo-dashboard' alt="Eventio Logo Black" onClick={handleHomeRoute}/>
         <div className='dashboard-account-wrapper'>
           <div className='dashboard-account-initials'>{initials}</div>
-          {/* <button > */}
-            <div className='dashboard-account-name' onClick={openDropdownModal}> {user.name} </div>
-            <MdArrowDropDown className='dashboard-account-dropdown' onClick={openDropdownModal}/>
-          {/* </button> */}
+            <div className='dashboard-account-name' onClick={closeDropdownModal}> {user.name} </div>
+          <MdArrowDropDown className='dashboard-account-dropdown' onClick={openDropdownModal}/>
         </div>
-
         <div className='events-view-wrapper'>
-
-          {/* Events View Sorter */}
           {mobile ?
             <div className='events-sorter-mobile'>
               <div className='events-sorter-mobile-show'>SHOW:</div>
@@ -178,8 +178,6 @@ function Dashboard() {
                 onClick={sortByPastEvents}>PAST EVENTS</div>
             </div>
           }
-          
-          {/* Events View Switcher */}
           <div className='events-switcher'>
             <div>
               <MdViewModule
@@ -193,7 +191,6 @@ function Dashboard() {
             </div>
           </div>
         </div>
-        
       </div>
       {displaySortedEvents()}
       {modalAccountModal()}

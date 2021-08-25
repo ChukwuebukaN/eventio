@@ -8,7 +8,8 @@ const AuthRoutes = {
 
 const NonAuthRoutes = {
   signin: '/',
-  signup: '/SignUp'
+  signup: '/SignUp',
+  notFound: '/NotFound'
 }
 
 export { AuthRoutes, NonAuthRoutes };

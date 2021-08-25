@@ -7,6 +7,7 @@ import CreateEvent from './pages/CreateEvent';
 import EditEvent from './pages/EditEvent';
 import Details from './pages/Details';
 import Profile from './pages/Profile';
+import NotFound from './pages/NotFound';
 import { AuthRoutes, NonAuthRoutes } from './constants';
 import { useLocation } from 'react-router-dom';
 import SideBar from './utils/Sidebar';
@@ -18,20 +19,22 @@ function Routes() {
 
   /** This function handles Protected Routes and displays the SideBar on Large Screens and hides it on Smaller Screens */
   const displaySidebar = () => {
-    if (screenIsMobile === 'true' && (location.pathname === NonAuthRoutes.signin || location.pathname === NonAuthRoutes.signup)) {
+    if (screenIsMobile === 'true' && (location.pathname === NonAuthRoutes.signin || location.pathname === NonAuthRoutes.signup )) {
       return <Fragment>
         <Switch>
           <Route exact path={NonAuthRoutes.signin} component={SignIn} />
           <Route exact path={NonAuthRoutes.signup} component={SignUp} />
+          <Route component={NotFound} />
         </Switch>
       </Fragment>;
-    } else if (location.pathname === NonAuthRoutes.signin || location.pathname === NonAuthRoutes.signup) {
+    } else if (location.pathname === NonAuthRoutes.signin || location.pathname === NonAuthRoutes.signup ) {
       return <Fragment>
         <div className='app-wrapper-sidebar'>
           <SideBar className=''/>
           <Switch>
             <Route exact path={NonAuthRoutes.signin} component={SignIn} />
             <Route exact path={NonAuthRoutes.signup} component={SignUp} />
+            <Route component={NotFound} />
           </Switch>
         </div>
       </Fragment>;

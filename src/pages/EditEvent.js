@@ -59,6 +59,11 @@ function EditEvent() {
   const openDropdownModal = () => {
     setModalOpen(true)
   };
+  
+  /** handles closing of Dropdown Modal */
+  const closeDropdownModal = () => {
+    setModalOpen(false)
+  };
 
   /** Displays Dropdown Modal */
   const modalAccountModal = () => {
@@ -178,11 +183,9 @@ function EditEvent() {
     <div className='onboarding'>
       <img src={LogoBlack} onClick={handleHomeRoute} className='logo-mobile' alt="Eventio Logo Black" />
       <div className='dashboard-account-wrapper'>
-          <div className='dashboard-account-initials'>{initials}</div>
-          {/* <button > */}
-            <div className='dashboard-account-name' onClick={openDropdownModal}> {user.name} </div>
-            <MdArrowDropDown className='dashboard-account-dropdown' onClick={openDropdownModal}/>
-          {/* </button> */}
+        <div className='dashboard-account-initials'>{initials}</div>
+          <div className='dashboard-account-name' onClick={closeDropdownModal}> {user.name} </div>
+        <MdArrowDropDown className='dashboard-account-dropdown' onClick={openDropdownModal}/>
       </div>
       <div className='event-id-text'> DETAIL EVENT: #{events._id} </div>
       {showDeletBtn()}
