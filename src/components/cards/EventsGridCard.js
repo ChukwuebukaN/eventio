@@ -6,6 +6,7 @@ import moment from "moment";
 import { AuthRoutes } from "../../constants";
 import { useHistory } from "react-router-dom";
 import authHandler from "../../authHandler";
+// import dashboard from "../../api/dashboard";
 
 const EventsGridCard = ({ events }) => {
   const mobile = useSelector(isMobile);
@@ -16,6 +17,18 @@ const EventsGridCard = ({ events }) => {
   /** handles routing to Edit Event */
   const handleEditEvent = () => {
     history.push(AuthRoutes.editEvent);
+  };
+
+  /** handles Join Event */
+  const handleJoinEvent = (fetchedEvents) => {
+    // return events.map((fetchedEvents0) => {
+    //   return console.log("JOIN EVENT Button Clicked", fetchedEvents0.id);
+    // });
+
+    console.log("JOIN EVENT Button Clicked", fetchedEvents.id);
+
+    // let id = fetchedEvents.id;
+    // dashboard.JoinEvent(id);
   };
 
   /** Convert ISO 8601 dateString to Date */
@@ -42,7 +55,7 @@ const EventsGridCard = ({ events }) => {
     }
     if (fetchedEvents.owner.id !== userId.id) {
       return (
-        <div className="event-join-button" onClick={handleEditEvent}>
+        <div className="event-join-button" onClick={handleJoinEvent}>
           JOIN
         </div>
       );
