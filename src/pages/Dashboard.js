@@ -1,213 +1,244 @@
-import React, { Fragment, useEffect, useState } from 'react';
-import LogoBlack from '../images/LogoBlack.png';
-import { MdArrowDropDown, MdViewModule, MdViewStream } from 'react-icons/md';
-import { FiLoader } from 'react-icons/fi';
-import { IoMdAdd } from 'react-icons/io';
-import { useHistory } from 'react-router-dom';
-import { AuthRoutes, NonAuthRoutes } from '../constants';
-import DropdownModal from '../components/modals/DropdownModal';
-import authHandler from '../authHandler';
-import EventsGridCard from '../components/cards/EventsGridCard';
-import EventsListCard from '../components/cards/EventsListCard';
-import dashboard from '../api/dashboard';
-import moment from 'moment';
-import { isMobile } from '../redux/user/userSlice';
-import { useSelector } from 'react-redux';
+import React, { Fragment, useEffect, useState } from "react";
+import LogoBlack from "../images/LogoBlack.png";
+import { MdArrowDropDown, MdViewModule, MdViewStream } from "react-icons/md";
+import { FiLoader } from "react-icons/fi";
+import { IoMdAdd } from "react-icons/io";
+import { useHistory } from "react-router-dom";
+import { AuthRoutes, NonAuthRoutes } from "../constants";
+import DropdownModal from "../components/modals/DropdownModal";
+import authHandler from "../authHandler";
+import EventsGridCard from "../components/cards/EventsGridCard";
+import EventsListCard from "../components/cards/EventsListCard";
+import dashboard from "../api/dashboard";
+import moment from "moment";
+import { isMobile } from "../redux/user/userSlice";
+import { useSelector } from "react-redux";
 
 function Dashboard() {
   const history = useHistory();
   const user = authHandler.getUser();
-  const mobile = useSelector(isMobile)
+  const mobile = useSelector(isMobile);
   const [modalOpen, setModalOpen] = useState(false);
   const [isEventsGrid, setEventsGrid] = useState(true);
   const [isEventsList, setEventsList] = useState(false);
   const [sortAllEvents, setSortAllEvents] = useState(true);
   const [sortFutureEvents, setSortFutureEvents] = useState(false);
   const [sortPastEvents, setSortPastEvents] = useState(false);
-  const [initials, setInitials] = useState('');
+  const [initials, setInitials] = useState("");
   const [events, setEvents] = useState([]);
   const [sortedEvents, setSortedEvents] = useState([]);
 
   useEffect(() => {
     const ac = new AbortController();
-    document.title = "Eventio • Dashboaord"
+    document.title = "Eventio • Dashboaord";
     try {
-      dashboard
-      .listOfEvents()
-      .then((response) => {
-        console.log('👍 Backend Sever is Available!', response)
-        setEvents(response.data)
-        setSortedEvents(response.data)
-      })
+      dashboard.listOfEvents().then((response) => {
+        console.log("👍 Backend Sever is Available!", response);
+        setEvents(response.data);
+        setSortedEvents(response.data);
+      });
       /** Capitalize User Initals */
       const userInitials = () => {
         const user = authHandler.getUser();
-        let name = user.name
-        let separateWord = name.toLowerCase().split(' ');
+        let name = user.name;
+        let separateWord = name.toLowerCase().split(" ");
         for (var i = 0; i < separateWord.length; i++) {
-            separateWord[i] = separateWord[i].charAt(0).toUpperCase();
+          separateWord[i] = separateWord[i].charAt(0).toUpperCase();
         }
-        setInitials(separateWord.join(''));
+        setInitials(separateWord.join(""));
       };
-      userInitials()
+      userInitials();
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
     return function cleanup() {
       ac.abort();
-    }
+    };
   }, []);
 
   /** handles routing to Profile page */
   const handleHomeRoute = () => {
-    history.push(NonAuthRoutes.signin)
+    history.push(NonAuthRoutes.dashboard);
   };
 
   const selectedDropDown = (e) => {
-    if (e.target.value === '1') {
-      sortByFutureEvents()
+    if (e.target.value === "0") {
+      sortByAllEvents();
     }
-    if (e.target.value === '2') {
-      sortByPastEvents()
+    if (e.target.value === "1") {
+      sortByFutureEvents();
+    }
+    if (e.target.value === "2") {
+      sortByPastEvents();
     }
   };
 
   /** handles routing to Create Event page */
   const handleCreateEvent = () => {
-    history.push(AuthRoutes.createEvent)
+    history.push(AuthRoutes.createEvent);
   };
 
   /** handles opening of Dropdown Modal */
   const openDropdownModal = () => {
-    setModalOpen(true)
+    setModalOpen(true);
   };
 
   /** handles closing of Dropdown Modal */
   const closeDropdownModal = () => {
-    setModalOpen(false)
+    setModalOpen(false);
   };
 
   /** Displays Dropdown Modal */
   const modalAccountModal = () => {
     if (modalOpen === true) {
-        return <DropdownModal />
-    };
+      return <DropdownModal />;
+    }
   };
 
   /** Handles Events view on Grid Selected */
   const eventsGridSelected = () => {
-    setEventsGrid(true)
-    setEventsList(false)
+    setEventsGrid(true);
+    setEventsList(false);
   };
 
   /** Handles Events view on List Selected */
   const eventsListSelected = () => {
-    setEventsList(true)
-    setEventsGrid(false)
+    setEventsList(true);
+    setEventsGrid(false);
   };
 
   /** Handles Events sorting on All Events Selected */
   const sortByAllEvents = () => {
-    setSortAllEvents(true)
-    setSortFutureEvents(false)
-    setSortPastEvents(false)
+    setSortAllEvents(true);
+    setSortFutureEvents(false);
+    setSortPastEvents(false);
   };
 
   /** Handles Events sorting on Future Events Selected */
   const sortByFutureEvents = () => {
-    setSortAllEvents(false)
-    setSortFutureEvents(true)
-    setSortPastEvents(false)
+    setSortAllEvents(false);
+    setSortFutureEvents(true);
+    setSortPastEvents(false);
 
-    // Filter Future Events 
-    const future = events.filter((event) => moment().isBefore(event.startsAt))
-    setSortedEvents(future)
+    // Filter Future Events
+    const future = events.filter((event) => moment().isBefore(event.startsAt));
+    setSortedEvents(future);
     // console.log('FUTURE EVENTS', future)
   };
 
   /** Handles Events sorting on Past Events Selected */
   const sortByPastEvents = () => {
-    setSortAllEvents(false)
-    setSortFutureEvents(false)
-    setSortPastEvents(true)
+    setSortAllEvents(false);
+    setSortFutureEvents(false);
+    setSortPastEvents(true);
 
-    // Filter Past Events 
-    const past = events.filter((event) => moment(event.startsAt).isBefore())
-    setSortedEvents(past)
+    // Filter Past Events
+    const past = events.filter((event) => moment(event.startsAt).isBefore());
+    setSortedEvents(past);
     // console.log('PAST EVENTS', past)
   };
 
   /** Displays Sorted Events in Grid and List */
   const displayEvents = () => {
     if (isEventsGrid === true) {
-      return <EventsGridCard events={sortedEvents}/>
+      return <EventsGridCard events={sortedEvents} />;
     } else if (isEventsList === true) {
-      return <EventsListCard events={sortedEvents} />
+      return <EventsListCard events={sortedEvents} />;
     }
   };
 
   /** Displays Loading */
   const displaySortedEvents = () => {
     if (sortedEvents.length > 1) {
-      return displayEvents()
+      return displayEvents();
     } else {
-      return <FiLoader className='btn-loading-dashboard' />
+      return <FiLoader className="btn-loading-dashboard" />;
     }
-  }
-
+  };
 
   return (
     <Fragment>
-      <div className='dashboard'>
-        <img src={LogoBlack} className='logo-dashboard' alt="Eventio Logo Black" onClick={handleHomeRoute}/>
-        <div className='dashboard-account-wrapper'>
-          <div className='dashboard-account-initials'>{initials}</div>
-            <div className='dashboard-account-name' onClick={closeDropdownModal}> {user.name} </div>
-          <MdArrowDropDown className='dashboard-account-dropdown' onClick={openDropdownModal}/>
+      <div className="dashboard">
+        <div className="dashboard-top-details">
+          <img
+            src={LogoBlack}
+            className="logo-dashboard"
+            alt="Eventio Logo Black"
+            onClick={handleHomeRoute}
+          />
+          <div className="dashboard-account-wrapper">
+            <div className="dashboard-account-initials">{initials}</div>
+            <div
+              className="dashboard-account-name"
+              onClick={closeDropdownModal}
+            >
+              {" "}
+              {user.name}{" "}
+            </div>
+            <MdArrowDropDown
+              className="dashboard-account-dropdown"
+              onClick={openDropdownModal}
+            />
+          </div>
         </div>
-        <div className='events-view-wrapper'>
-          {mobile ?
-            <div className='events-sorter-mobile'>
-              <div className='events-sorter-mobile-show'>SHOW:</div>
+        <div className="events-view-wrapper">
+          {mobile ? (
+            <div className="events-sorter-mobile">
+              <div className="events-sorter-mobile-show">SHOW:</div>
               <select onChange={selectedDropDown}>
                 <option value="0">ALL EVENTS</option>
                 <option value="1">FUTURE EVENTS</option>
                 <option value="2">PAST EVENTS</option>
               </select>
-              <MdArrowDropDown className='events-sorter-mobile-icon'/>
+              <MdArrowDropDown className="events-sorter-mobile-icon" />
             </div>
-            :
-            <div className='events-sorter'>
+          ) : (
+            <div className="events-sorter">
               <div
-                className={sortAllEvents ? 'events-sorter-all-active' : ''}
-                onClick={sortByAllEvents}>ALL EVENTS</div>
+                className={sortAllEvents ? "events-sorter-all-active" : ""}
+                onClick={sortByAllEvents}
+              >
+                ALL EVENTS
+              </div>
               <div
-                className={sortFutureEvents ? 'events-sorter-future-active' : ''}
-                onClick={sortByFutureEvents}>FUTURE EVENTS</div>
+                className={
+                  sortFutureEvents ? "events-sorter-future-active" : ""
+                }
+                onClick={sortByFutureEvents}
+              >
+                FUTURE EVENTS
+              </div>
               <div
-                className={sortPastEvents ? 'events-sorter-past-active' : ''}
-                onClick={sortByPastEvents}>PAST EVENTS</div>
+                className={sortPastEvents ? "events-sorter-past-active" : ""}
+                onClick={sortByPastEvents}
+              >
+                PAST EVENTS
+              </div>
             </div>
-          }
-          <div className='events-switcher'>
+          )}
+          <div className="events-switcher">
             <div>
               <MdViewModule
-                className={isEventsGrid ? 'events-switcher-grid-active' : ''}
-                onClick={eventsGridSelected}/>
+                className={isEventsGrid ? "events-switcher-grid-active" : ""}
+                onClick={eventsGridSelected}
+              />
             </div>
             <div>
               <MdViewStream
-                className={isEventsList ? 'events-switcher-list-active' : ''}
-                onClick={eventsListSelected}/>
+                className={isEventsList ? "events-switcher-list-active" : ""}
+                onClick={eventsListSelected}
+              />
             </div>
           </div>
         </div>
       </div>
       {displaySortedEvents()}
       {modalAccountModal()}
-      <div className='create-event-btn' onClick={handleCreateEvent}><IoMdAdd className='create-event-btn-icon' /></div>
+      <div className="create-event-btn" onClick={handleCreateEvent}>
+        <IoMdAdd className="create-event-btn-icon" />
+      </div>
     </Fragment>
-  )
-};
+  );
+}
 
 export default Dashboard;

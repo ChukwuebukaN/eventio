@@ -1,18 +1,22 @@
+.dashboard {
+  background-color: #F2F2F2;
+  height: 100%;
+}
+/* .dashboard-top-details {
+
+} */
 .logo-dashboard {
   top: 29px;
   left: 24px;
   position: absolute;
   cursor: pointer;
 }
-.dashboard {
-  background-color: #F2F2F2;
-  height: 100%;
-}
 .dashboard-account-wrapper {
-  float: right;
-  margin-top: 23px;
-  display: flex;
+  top: 20px;
+  right: 0px;
+  position: absolute;
   align-items: center;
+  display: flex;
 }
 .dashboard-account-initials {
  margin-right: 10px;
@@ -131,10 +135,10 @@ select {
   border: 0;
   background: none;
   font-family: 'HindSemiBold';
-  width: 125px;
+  width: 100px;
 }
 .events-sorter-mobile-icon {
-  margin-left: -25px;
+  /* margin-left: -25px; */
   margin-bottom: 3px;
   font-size: 30px;
   color: #323C46;
@@ -167,7 +171,7 @@ select {
 }
 .events-switcher {
   display: flex;
-  right: 45px;
+  right: 40px;
   top: 130px;
   position: absolute;
   color: #D9DCE1;
@@ -190,13 +194,13 @@ select {
 }
 .events-gird-item-wrapper {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
   grid-gap: 1rem;
-  margin: 180px 50px auto;
+  margin: 180px 40px auto;
   margin-bottom: 100px;
 }
 .events-gird-item {
-  height: 296px;
+  height: 310px;
   background-color: white;
   box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.108696);
   border-radius: 2px;
