@@ -1,4 +1,18 @@
-.dashboard-account-bigger-initials {    
+.profile-details {
+  position: absolute;
+  /* left: 50%;
+  top: 35%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); */
+  height: 184px;
+  width: 80%;
+  left: 10%;
+  right: 10%;
+  top: 120px;
+  text-align: -webkit-center;
+  z-index: 1;
+}
+.dashboard-account-bigger-initials {
   margin-right: 10px;
   background-color: #D9DCE1;
   color: #949EA8;
@@ -9,7 +23,7 @@
   text-align: center;
   line-height: 130px;
   font-family: HindMedium;
-  position: absolute;
+  /* position: absolute; */
   top: 112px;
   left: 43%;
   z-index: 1;
@@ -26,23 +40,23 @@
   border-radius: 2px;
 }
 .profile-name {
-  position: absolute;
+  /* position: absolute; */
   left: 43.7%;
   top: 267px;
   font-family: HindMedium;
   font-size: 18px;
-  line-height: 48px;
+  line-height: 60px;
   text-align: center;
   color: #323C46;
   z-index: 2;
 }
 .profile-email {
-  position: absolute;
+  /* position: absolute; */
   left: 43.5%;
   top: 297px;
   font-family: HindLight;
   font-size: 18px;
-  line-height: 48px;
+  line-height: 0px;
   text-align: center;
   color: #949EA8;
   z-index: 2;

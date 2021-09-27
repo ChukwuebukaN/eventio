@@ -42,6 +42,18 @@ export default {
       },
     });
   },
+  /** Send a GET request to Get Specific Event */
+  GetSpecificEvent: async function (id) {
+    return await axios.post(
+      `https://testproject-api-v2.strv.com/events/${id}`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          APIKey: "8bbe1daa454b5960bd6fadc10b9ac1220771110d",
+        },
+      }
+    );
+  },
   /** Send a PATCH request to Edit Event */
   EditEvent: async function (title, description, capacity, id) {
     let accessToken = authHandler.get();
@@ -66,19 +78,11 @@ export default {
     );
   },
   /** Send a DELETE request to Delete Event */
-  DeleteEvent: async function (title, description, capacity, id) {
+  DeleteEvent: async function (id) {
     let accessToken = authHandler.get();
-    let data = {
-      title: title,
-      description: description,
-      startsAt: "2021-12-18T09:57:19.956Z",
-      capacity: capacity,
-    };
-    const fd = JSON.stringify(data);
 
     return await axios.delete(
-      `https://testproject-api-v2.strv.com/events${id}`,
-      fd,
+      `https://testproject-api-v2.strv.com/events/${id}`,
       {
         headers: {
           "Content-Type": "application/json",

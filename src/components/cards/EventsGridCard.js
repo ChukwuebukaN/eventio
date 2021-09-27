@@ -20,11 +20,18 @@ const EventsGridCard = ({ events }) => {
   };
 
   /** handles Join Event */
-  const handleJoinEvent = (fetchedEvents) => {
+  const handleJoinEvent = () => {
     // return events.map((fetchedEvents0) => {
     //   return console.log("JOIN EVENT Button Clicked", fetchedEvents0.id);
     // });
-
+    const fetchedEventsFunc = () => {
+      return events.map((fetchedEvents) => (
+        <div className="event-id-text" key={fetchedEvents._id}>
+          DETAIL EVENT: #{fetchedEvents.id}
+        </div>
+      ));
+    };
+    return events.map((fetchedEvents) => 
     console.log("JOIN EVENT Button Clicked", fetchedEvents.id);
 
     // let id = fetchedEvents.id;
@@ -60,7 +67,7 @@ const EventsGridCard = ({ events }) => {
         </div>
       );
     }
-    if (fetchedEvents.attendees._id === userId.id) {
+    if (fetchedEvents.attendees.id === userId.id) {
       return <div className="event-leave-button">LEAVE</div>;
     }
   };
