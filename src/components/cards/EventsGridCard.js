@@ -31,8 +31,8 @@ const EventsGridCard = ({ events }) => {
         </div>
       ));
     };
-    return events.map((fetchedEvents) => 
-    console.log("JOIN EVENT Button Clicked", fetchedEvents.id);
+    // return events.map((fetchedEvents) =>
+    // console.log("JOIN EVENT Button Clicked", fetchedEvents.id);
 
     // let id = fetchedEvents.id;
     // dashboard.JoinEvent(id);
