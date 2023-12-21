@@ -167,13 +167,15 @@ function Dashboard() {
             onClick={handleHomeRoute}
           />
           <div className="dashboard-account-wrapper">
-            <div className="dashboard-account-initials">{initials}</div>
+            <div className="dashboard-account-initials">
+              {initials ? initials : ""}
+            </div>
             <div
               className="dashboard-account-name"
               onClick={closeDropdownModal}
             >
               {" "}
-              {user.name}{" "}
+              {user?.name}{" "}
             </div>
             <MdArrowDropDown
               className="dashboard-account-dropdown"

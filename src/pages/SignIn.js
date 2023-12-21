@@ -72,11 +72,12 @@ function SignIn() {
   const handleSignIn = (e) => {
     e.preventDefault();
     setBtnIsLoading(true);
+    history.push(AuthRoutes.dashboard);
     try {
       onboarding
         .SignIn(email, password)
         .then((response) => {
-          console.log("👍 Backend Sever is Available!", response);
+          console.log("👍 Backend Server is Available!", response);
           let accessToken = response.headers["authorization"];
           dispatch(
             signinUser({
